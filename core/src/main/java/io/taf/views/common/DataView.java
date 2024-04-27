@@ -1,6 +1,7 @@
 package io.taf.views.common;
 
 import io.taf.entity.DataEntity;
+import io.taf.service.DataService;
 import jakarta.annotation.Nonnull;
 import lombok.SneakyThrows;
 
@@ -14,6 +15,9 @@ public interface DataView<ENTITY extends DataEntity<ID>, ID extends Serializable
 
     @Nonnull
     Class<ID> getIdClass();
+
+    @Nonnull
+    DataService<ENTITY, ID> getService();
 
     @Nonnull
     @SneakyThrows

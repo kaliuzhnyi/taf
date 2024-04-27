@@ -8,8 +8,9 @@ import io.taf.views.list.ListDataView;
 
 import java.io.Serializable;
 
-public interface DataMetaElement<ITEM_VIEW extends Component & ItemDataView<ENTITY, ID, LIST_VIEW>,
-        LIST_VIEW extends Component & ListDataView<ENTITY, ID, ITEM_VIEW>,
+public interface DataMetaElement<
+        ITEM_VIEW extends Component & ItemDataView<ENTITY, ID, LIST_VIEW, ITEM_VIEW>,
+        LIST_VIEW extends Component & ListDataView<ENTITY, ID, ITEM_VIEW, LIST_VIEW>,
         ENTITY extends DataEntity<ID>, ID extends Serializable>
         extends MetaElement<LIST_VIEW> {
 

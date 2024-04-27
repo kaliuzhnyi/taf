@@ -8,5 +8,5 @@ import io.taf.layouts.DefaultAppLayout;
 @Route(value = "clients/:id", layout = DefaultAppLayout.class)
 @PageTitle("Client")
 public class ClientsItemView
-        extends AbstractCatalogItemView<ClientsEntity, Long, ClientsListView> {
+        extends AbstractCatalogItemView<ClientsEntity, Long, ClientsListView, ClientsItemView> {
 }

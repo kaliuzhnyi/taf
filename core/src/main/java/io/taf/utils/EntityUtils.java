@@ -25,7 +25,7 @@ public class EntityUtils {
             if (field.isAnnotationPresent(annotation)) {
                 fields.add(field);
             }
-        });
+        }, ReflectionUtils.COPYABLE_FIELDS);
         return fields;
     }
 

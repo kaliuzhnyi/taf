@@ -3,7 +3,11 @@ package io.taf.views.common;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import io.taf.views.panel.AbstractCommandPanel;
 import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
+
+import java.util.Optional;
 
 public abstract class AbstractView
         extends BaseComposite<VerticalLayout>
@@ -19,8 +23,11 @@ public abstract class AbstractView
     protected VerticalLayout initContent() {
         var content = super.initContent();
         content.setSizeFull();
+
+        Optional.ofNullable(getCommandPanel())
+                .ifPresent(content::add);
+
         content.add(
-                getCommandPanel(),
                 getHeaderPanel(),
                 getBodyPanel(),
                 getFooterPanel()
@@ -28,24 +35,25 @@ public abstract class AbstractView
         return content;
     }
 
-    @Nonnull
+    @Nullable
     @Override
-    public HorizontalLayout getCommandPanel() {
-        return getComponent(COMMAND_PANEL_COMPONENT_ID, HorizontalLayout.class, initCommandPanel());
+    public AbstractCommandPanel getCommandPanel() {
+        return Optional.ofNullable(initCommandPanel())
+                .map(commandPanel -> {
+                    addComponent(COMMAND_PANEL_COMPONENT_ID, commandPanel);
+                    return commandPanel;
+                })
+                .orElse(null);
+    }
+
+    @Nullable
+    protected AbstractCommandPanel initCommandPanel() {
+        return null;
     }
 
     @Nonnull
-    protected HorizontalLayout initCommandPanel() {
-        var panel = new HorizontalLayout();
-        panel.setId(COMMAND_PANEL_COMPONENT_ID);
-        panel.setWidthFull();
-        panel.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
-        return panel;
-    }
-
-    @Nonnull
     @Override
-    public HorizontalLayout getHeaderPanel() {
+    public final HorizontalLayout getHeaderPanel() {
         return getComponent(HEADER_PANEL_COMPONENT_ID, HorizontalLayout.class, initHeaderPanel());
     }
 
@@ -60,7 +68,7 @@ public abstract class AbstractView
 
     @Nonnull
     @Override
-    public HorizontalLayout getBodyPanel() {
+    public final HorizontalLayout getBodyPanel() {
         return getComponent(BODY_PANEL_COMPONENT_ID, HorizontalLayout.class, initBodyPanel());
     }
 
@@ -74,7 +82,7 @@ public abstract class AbstractView
 
     @Nonnull
     @Override
-    public HorizontalLayout getFooterPanel() {
+    public final HorizontalLayout getFooterPanel() {
         return getComponent(FOOTER_PANEL_COMPONENT_ID, HorizontalLayout.class, initFooterPanel());
     }
 

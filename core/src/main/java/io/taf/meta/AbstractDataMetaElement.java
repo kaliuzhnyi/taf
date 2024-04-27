@@ -12,8 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 
-public abstract class AbstractDataMetaElement<ITEM_VIEW extends Component & ItemDataView<ENTITY, ID, LIST_VIEW>,
-        LIST_VIEW extends Component & ListDataView<ENTITY, ID, ITEM_VIEW>,
+public abstract class AbstractDataMetaElement<
+        ITEM_VIEW extends Component & ItemDataView<ENTITY, ID, LIST_VIEW, ITEM_VIEW>,
+        LIST_VIEW extends Component & ListDataView<ENTITY, ID, ITEM_VIEW, LIST_VIEW>,
         ENTITY extends DataEntity<ID>, ID extends Serializable>
         extends AbstractMetaElement<LIST_VIEW>
         implements DataMetaElement<ITEM_VIEW, LIST_VIEW, ENTITY, ID> {

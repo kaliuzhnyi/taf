@@ -15,6 +15,8 @@ import java.io.Serializable;
 public interface Entity<ID extends Serializable>
         extends Persistable<ID> {
 
+    Class<ID> getIdClass();
+
     /**
      * Gets the ID of the entity. Can be null for a new entity that hasn't been persisted yet.
      *

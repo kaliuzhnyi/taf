@@ -8,5 +8,5 @@ import io.taf.layouts.DefaultAppLayout;
 @Route(value = "realtors", layout = DefaultAppLayout.class)
 @PreserveOnRefresh
 public class RealtorsListView
-        extends AbstractCatalogListView<RealtorsEntity, Long, RealtorsItemView> {
+        extends AbstractCatalogListView<RealtorsEntity, Long, RealtorsItemView, RealtorsListView> {
 }

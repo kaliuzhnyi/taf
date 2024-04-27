@@ -8,8 +8,8 @@ import com.vaadin.flow.router.RouteParam;
 import com.vaadin.flow.spring.data.VaadinSpringDataHelpers;
 import io.taf.entity.DataEntity;
 import io.taf.utils.GenericUtils;
-import io.taf.utils.grid.GridUtils;
 import io.taf.utils.NavigateUtils;
+import io.taf.utils.grid.GridUtils;
 import io.taf.views.common.AbstractDataView;
 import io.taf.views.item.ItemDataView;
 import jakarta.annotation.Nonnull;
@@ -19,9 +19,10 @@ import java.io.Serializable;
 import java.util.Optional;
 
 public abstract class AbstractListDataView<ENTITY extends DataEntity<ID>, ID extends Serializable,
-        ITEM_DATA_VIEW extends Component & ItemDataView<ENTITY, ID, ? extends ListDataView<ENTITY, ID, ITEM_DATA_VIEW>>>
+        ITEM_DATA_VIEW extends Component & ItemDataView<ENTITY, ID, LIST_DATA_VIEW, ITEM_DATA_VIEW>,
+        LIST_DATA_VIEW extends Component & ListDataView<ENTITY, ID, ITEM_DATA_VIEW, LIST_DATA_VIEW>>
         extends AbstractDataView<ENTITY, ID>
-        implements ListDataView<ENTITY, ID, ITEM_DATA_VIEW> {
+        implements ListDataView<ENTITY, ID, ITEM_DATA_VIEW, LIST_DATA_VIEW> {
 
     public static final String GRID_COMPONENT_ID = "grid";
 
