@@ -8,4 +8,7 @@ public interface CommandPanel {
     @Nonnull
     MenuBar getMenu();
 
+    @Nonnull
+    MenuBar getMoreMenu();
+
 }

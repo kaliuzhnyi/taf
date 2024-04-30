@@ -4,11 +4,12 @@ import com.vaadin.flow.component.contextmenu.MenuItem;
 import io.taf.views.item.ItemDataView;
 import jakarta.annotation.Nonnull;
 
-@SuppressWarnings("rawtypes")
+@SuppressWarnings({"rawtypes", "unused"})
 public interface ItemDataCommandPanel<ITEM_DATA_VIEW extends ItemDataView>
-        extends CommandPanel {
+        extends DataCommandPanel<ITEM_DATA_VIEW> {
 
     String SAVE_COMMAND_DEFAULT_TITLE = "Save";
+    String SAVE_AND_CLOSE_COMMAND_DEFAULT_TITLE = "Save and close";
     String DELETE_COMMAND_DEFAULT_TITLE = "Delete";
     String CANCEL_COMMAND_DEFAULT_TITLE = "Cancel";
     String MORE_COMMAND_DEFAULT_TITLE = "More..";
